@@ -1,40 +1,62 @@
 {
-  "author": "Remy Sharp",
-  "name": "loop-protect",
-  "description": "Prevent infinite loops in dynamically eval'd JavaScript.",
-  "main": "dist/",
-  "version": "2.1.6",
-  "homepage": "https://github.com/jsbin/loop-protect",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/jsbin/loop-protect.git"
-  },
-  "scripts": {
-    "test": "jest test/*.test.js",
-    "build": "NODE_ENV=production babel lib/ --out-dir dist --copy-files",
-    "prepublishOnly": "npm run build"
+  "name": "babel-auto-break",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/cjs/babel-auto-break.js",
+  "module": "./dist/esm/babel-auto-break.js",
+  "types": "./dist/babel-auto-break.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/babel-auto-break.js",
+      "require": "./dist/cjs/babel-auto-break.js"
+    }
   },
   "files": [
-    "dist"
+    "dist/"
   ],
-  "babel": {
-    "presets": [
-      "stage-0",
-      "env"
-    ]
+  "scripts": {
+    "lint": "eslint .",
+    "test": "mocha",
+    "tdd": "mocha -w -R min -p",
+    "cover": "c8 -r text -r html -r lcov mocha",
+    "build": "rollup -c && tsc -p tsconfig.prod.json",
+    "prebuild": "rimraf dist",
+    "prepack": "npm test && npm run build"
+  },
+  "author": "Remy Sharp & freeCodeCamp",
+  "license": "See license in LICENSE",
+  "bugs": {
+    "url": "https://github.com/thebearingedge/babel-auto-break/issues"
+  },
+  "homepage": "https://github.com/thebearingedge/babel-auto-break#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thebearingedge/babel-auto-break.git"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "babel-runtime": "^6.26.0",
-    "babel-standalone": "^6.26.0",
-    "jest": "^22.0.6"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://jsbin.mit-license.org"
-    }
-  ]
+    "@babel/standalone": "^7.20.4",
+    "@esbuild-kit/esm-loader": "^2.5.0",
+    "@rollup/plugin-typescript": "^9.0.2",
+    "@types/babel__core": "^7.1.20",
+    "@types/babel__standalone": "^7.1.4",
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "^18.11.9",
+    "@types/sinon": "^10.0.13",
+    "@types/sinon-chai": "^3.2.9",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "@typescript-eslint/parser": "^5.43.0",
+    "c8": "^7.12.0",
+    "chai": "^4.3.7",
+    "eslint": "^8.27.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "lint-staged": "^13.0.3",
+    "mocha": "^10.1.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^3.3.0",
+    "sinon": "^14.0.2",
+    "sinon-chai": "^3.7.0",
+    "typescript": "^4.9.3"
+  }
 }

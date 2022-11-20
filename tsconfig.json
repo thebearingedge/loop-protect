@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true,
+    "strict": true,
+    "target": "esnext"
+  },
+  "include": [
+    "src/",
+    "rollup.config.js"
+  ]
+}
